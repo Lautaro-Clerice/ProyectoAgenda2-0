@@ -10,3 +10,11 @@ export const validationschema = Yup.object({
     telefono:Yup.string().trim().min(10, 'Debe contener 10 numeros').required('Este campo es obligatorio'),
     
 });
+
+export const loginValidationSchema = Yup.object({
+  email: Yup.string()
+    .required('Campo Requerido'),
+  password: Yup.string()
+    .min(6, 'Mínimo de caracteres: 6')
+    .required('Campo Requerido'),
+});

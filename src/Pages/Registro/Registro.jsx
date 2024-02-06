@@ -97,15 +97,8 @@ const Registro = () => {
                                         cursor: "pointer",
                                     }}
                                     type="submit"
-                                >
-                                    <Button
-                                        style={{
-                                            backgroundColor: "#DB4ECF",
-                                            color: "white", marginBottom:'20px'
-                                        }}
-                                    >
+                                >                                  
                                         {loading ? <Loader /> : "Buscar turno"}
-                                    </Button>
                                 </motion.button>
                             </FormContacto>
                         </Formik>
