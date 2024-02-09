@@ -18,3 +18,12 @@ export const loginValidationSchema = Yup.object({
     .min(6, 'Mínimo de caracteres: 6')
     .required('Campo Requerido'),
 });
+
+export const codeValidationSchema = Yup.object({
+  code: Yup.string()
+  .required('Este campo es obligatorio')
+  .min(5, 'Minimo 5 caracteres'),
+  email: Yup.string()
+  .email('Debes ingresar un Mail valido')
+  .required('Este campo es obligatorio'),
+});

@@ -16,6 +16,7 @@ import { HomeUser } from '../Pages/HomeUser/HomeUser';
 import { useSelector } from 'react-redux';
 import '../transition.css';
 import Login from '../Pages/Login/Login';
+import VerificarEmail from '../Pages/VerificarEmail/VerificarEmail';
 
 const Routes = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -93,6 +94,20 @@ const Routes = () => {
                 unmountOnExit
               >
                 <Login />
+              </CSSTransition>
+            }
+          />
+            <Route
+            path="/VerificarEmail"
+            element={
+              <CSSTransition
+                classNames="fade"
+                timeout={300}
+                appear
+                in={true}
+                unmountOnExit
+              >
+                <VerificarEmail />
               </CSSTransition>
             }
           />

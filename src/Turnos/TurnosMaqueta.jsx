@@ -6,12 +6,30 @@ import { setConfirmado } from '../Redux/Slices/TurnoConfirmado';
 import { eliminarTurnoSeleccionado } from '../Redux/Slices/TurnosSlices';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom/dist';
+import { AgendarTurno } from '../Axios/axiosUser';
 
 const TurnosMaqueta = ({ fecha, horario }) => {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.user.currentUser);
   const [isRemoving, setIsRemoving] = useState(false);
   const navigate = useNavigate();
+  const AgendarTurnosBD = async () => {
+    const turnoData = {
+      horario: horario,
+      fecha: fecha,
+      name: usuario.nombre,
+      email: usuario.email,
+      telefono: usuario.telefono,
+
+    };
+    try {
+      await AgendarTurno(usuario, turnoData);
+      navigate('/home');
+    } catch (error) {
+      alert('Error al crear la orden');
+    }
+  }
+
   const handleAgendarClick = () => {
     setIsRemoving(true);
     setTimeout(() => {
@@ -44,6 +62,7 @@ const TurnosMaqueta = ({ fecha, horario }) => {
             <TurnosContainer>
               <OpcionesContainer onClick={() => {
                     handleAgendarClick();
+                    AgendarTurnosBD();
                   }}>
                 <p>{horario}</p>
               </OpcionesContainer>

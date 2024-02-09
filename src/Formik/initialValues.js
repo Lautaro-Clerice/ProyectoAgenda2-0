@@ -10,3 +10,8 @@ export const initialValues = {
     email:'',
     password:''
   }
+
+  export const CodigoInitialValues = {
+    code:'',
+    email:''
+  }

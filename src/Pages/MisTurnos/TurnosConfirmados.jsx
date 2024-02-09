@@ -1,37 +1,32 @@
-import React from "react";
-import {
-    AgendasContainerTurnos,
-    CambiarTurno,
-    ContainerBotones,
-    EliminarTurno,
-    ObservacionesContainer,
-    TurnoFechaContainer,
-} from "./MisTurnosStyles";
+import React, { useEffect } from "react";
+import { AgendasContainerTurnos, CambiarTurno, ContainerBotones, EliminarTurno, ObservacionesContainer, TurnoFechaContainer } from "./MisTurnosStyles";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { useDispatch} from "react-redux";
-import {eliminarTurno, setConfirmado} from '../../Redux/Slices/TurnoConfirmado'
+import { useDispatch, useSelector } from "react-redux";
+import { eliminarTurno, setConfirmado } from '../../Redux/Slices/TurnoConfirmado'
 import { useNavigate } from "react-router-dom";
-const TurnosConfirmados = ({ fecha, horario }) => {
 
+const TurnosConfirmados = ({ fecha, horario }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const fechaFormateada = format(new Date(fecha), "d 'de' MMMM 'de' yyyy", {
-        locale: es,
-    });
+    const currentUser = useSelector((state) => state.user.currentUser);
+
+    // Formatear la fecha recibida a un formato más legible
+    const fechaFormateada = format(new Date(fecha), "d 'de' MMMM", { locale: es });
+
     const handleEliminarTurno = () => {
-          const resultado = window.confirm('Eliminar este turno?')
-            if(resultado){
-                dispatch(eliminarTurno({ fecha: fechaFormateada }));
-            }else{
-                return
-            }
-          
-      };
-      const handleModificarTurno = () => {
+        const resultado = window.confirm('Eliminar este turno?')
+        if (resultado) {
+            dispatch(eliminarTurno({ fecha }));
+        } else {
+            return;
+        }
+    };
+
+    const handleModificarTurno = () => {
         dispatch(setConfirmado(null));
-        navigate('/ElegirTurno')
-      }
+        navigate('/ElegirTurno');
+    };
 
     return (
         <AgendasContainerTurnos>
@@ -50,7 +45,7 @@ const TurnosConfirmados = ({ fecha, horario }) => {
                 <CambiarTurno onClick={handleModificarTurno}>Cambiar turno</CambiarTurno>
                 <EliminarTurno onClick={handleEliminarTurno}>Eliminar turno</EliminarTurno>
             </ContainerBotones>
-            <hr style={{width:'90%', marginTop:'10px'}} />
+            <hr style={{ width: '90%', marginTop: '10px' }} />
         </AgendasContainerTurnos>
     );
 };

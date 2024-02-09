@@ -4,11 +4,12 @@ import storage from 'redux-persist/lib/storage';
 import turnosReducer from './Slices/TurnosSlices'
 import userReducer from './Slices/TurnosObtenidosSlice'
 import turnoConfirmadoReducer from './Slices/TurnoConfirmado'
-
+import turnoClienteReducer from './Slices/ObtenerTurnos'
 const reducers = combineReducers({
     turnos: turnosReducer,
     user: userReducer,
     turnoConfirmado: turnoConfirmadoReducer,
+    turnoCliente: turnoClienteReducer,
 });
 
 const persistConfig = {

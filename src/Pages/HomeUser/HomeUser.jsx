@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     ContainerAll, ContainerPadre,
 } from "../../Componentes/Contenedor/ContainerStyles";
 import { CambiarTurno, SinTurnoContainer } from "../MisTurnos/MisTurnosStyles";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     TitleHomeUser,
     TurnosContainer,
@@ -14,15 +14,30 @@ import { ImgMobile, LogoMobile } from "../Home/HomeStyles";
 import TurnosConfirmados from "../MisTurnos/TurnosConfirmados";
 import { IoMdPaperPlane } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-
+import { clearError, fetchturnosFail } from "../../Redux/Slices/ObtenerTurnos";
+import getTurnos from "../../Axios/axiosUser";
 
 
 
 export const HomeUser = () => {
     const navigate = useNavigate();
-    const TurnosTomados = useSelector(
-        (state) => state.turnoConfirmado.turnoConfirmado
-    );
+    const currentUser = useSelector(state => state.user.currentUser);
+  const { turnos, error } = useSelector(state => state.turnoCliente);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!currentUser) {
+        dispatch(clearError());
+    } else {
+        getTurnos(dispatch, currentUser);
+    }
+
+    if (!currentUser?.token) {
+      dispatch(fetchturnosFail());
+    } else {
+      error && dispatch(clearError());
+    }
+  }, [dispatch, currentUser?.token, turnos, error]);
 
     return (
         <>
@@ -45,8 +60,8 @@ export const HomeUser = () => {
                     <p>Proximos Turnos</p>
                 </TurnosProximos>
                 <TurnosContainer>
-                    {TurnosTomados !== null ? (
-                    <TurnosConfirmados {...TurnosTomados} />
+                    {turnos?.length? (
+                    turnos.map( turno => <TurnosConfirmados key={turno._id} {...turno}/> )
                 ) : (
                     <SinTurnoContainer>
                         <p>No tenes turnos tomados</p>

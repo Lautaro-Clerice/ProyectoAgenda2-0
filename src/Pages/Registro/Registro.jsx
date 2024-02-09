@@ -9,7 +9,6 @@ import { Field, Formik } from "formik";
 import { initialValues } from "../../Formik/initialValues";
 import { validationschema } from "../../Formik/validationSchema";
 import Input from "../../Generales/Input";
-import { Button } from "@nextui-org/react";
 import { useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom/dist";
 import { toast } from "react-toastify";
@@ -20,19 +19,19 @@ import { ContainerRegistro, FormRegistro } from "./RegistroStyles";
 import { colorTemplado } from "../../UX/Colors";
 import { ImgMobile, LogoMobile } from "../Home/HomeStyles";
 import LogoCliente from "../../Imagenes/BecaShop.png";
-import { createUser } from "../../Axios/AxiosUser";
+import { createUser } from "../../Axios/axiosUser";
 const Registro = () => {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleFormSubmit = async (values) => {
-        setLoading(true);
+       
         await new Promise((resolve) => setTimeout(resolve, 1800));
         toast.success("Usuario Registrado!");
-        await new Promise((resolve) => setTimeout(resolve, 2000));
         setLoading(false);
         dispatch(setUser(values));
-        navigate("/Login");
+        navigate("/VerificarEmail");
+
     };
 
     return (

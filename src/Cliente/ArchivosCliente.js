@@ -1,2 +1,2 @@
-
+export const nombreCliente = 'BecaShop'
 
