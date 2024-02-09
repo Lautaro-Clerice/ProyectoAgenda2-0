@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://turnosapi.vercel.app/'
+export const BASE_URL = 'http://localhost:3030/'

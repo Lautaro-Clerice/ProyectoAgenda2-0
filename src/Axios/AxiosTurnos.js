@@ -1,14 +1,20 @@
-export const CreateOrder = async (order, dispatch, currentUser) => {
-    try {
-      const response = await axios.post(`${BASE_URL}orders`, order, {
-        headers: {
-          'x-token': currentUser.token,
-        },
+import axios from "axios";
+import { BASE_URL } from "../Utils/Constants";
+
+const deleteTurnos = async (dispatch, currentUser, _id) => {
+  console.log("ID del turno a eliminar:", _id);
+  console.log("token", currentUser);
+  try {
+      const response = await axios.delete(`${BASE_URL}turnos/${_id}`, {
+          headers: {
+              "x-token": currentUser,
+          },
       });
-      if (response) {
-        getOrders(dispatch, currentUser);
-      }
-    } catch (err) {
-      dispatch(createOrderFail());
-    }
-  };
+      console.log("Respuesta del servidor:", response.data);
+      
+  } catch (error) {
+      console.error("Error al eliminar el turno:", error);
+  }
+};
+
+export default deleteTurnos;

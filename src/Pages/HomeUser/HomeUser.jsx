@@ -31,13 +31,8 @@ export const HomeUser = () => {
     } else {
         getTurnos(dispatch, currentUser);
     }
+}, [dispatch, currentUser]);
 
-    if (!currentUser?.token) {
-      dispatch(fetchturnosFail());
-    } else {
-      error && dispatch(clearError());
-    }
-  }, [dispatch, currentUser?.token, turnos, error]);
 
     return (
         <>

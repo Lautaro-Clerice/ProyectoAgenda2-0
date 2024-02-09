@@ -2,7 +2,7 @@
 import axios from 'axios';
 import {BASE_URL} from '../Utils/Constants'
 import { toast } from 'react-toastify';
-import { fetchturnosFail, fetchturnosStart, fetchturnosSuccess } from '../Redux/Slices/ObtenerTurnos';
+import { clearError, fetchturnosFail, fetchturnosStart, fetchturnosSuccess } from '../Redux/Slices/ObtenerTurnos';
 export const createUser = async (nombre, email, password, telefono) => {
     try {
         const response = await axios.post(
@@ -74,7 +74,6 @@ const getTurnos = async (dispatch, currentUser) => {
                 "x-token": currentUser.token,
             },
         });
-        console.log("Datos de turnos obtenidos:", turnos); // Agregar este console.log
         if (turnos) {
             dispatch(fetchturnosSuccess(turnos.data.data));
         }
@@ -83,6 +82,7 @@ const getTurnos = async (dispatch, currentUser) => {
         dispatch(fetchturnosFail("Error al obtener órdenes"));
     }
 };
+
 
 
 export default getTurnos

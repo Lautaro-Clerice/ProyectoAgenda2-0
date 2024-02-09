@@ -5,21 +5,21 @@ import { es } from "date-fns/locale";
 import { useDispatch, useSelector } from "react-redux";
 import { eliminarTurno, setConfirmado } from '../../Redux/Slices/TurnoConfirmado'
 import { useNavigate } from "react-router-dom";
+import deleteTurnos from "../../Axios/AxiosTurnos";
 
 const TurnosConfirmados = ({ fecha, horario }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const currentUser = useSelector((state) => state.user.currentUser);
-
-    // Formatear la fecha recibida a un formato más legible
+    const usuario = useSelector((state) => state.user.currentUser.token);
+    const turno = useSelector((state) => state.turnoCliente.turnos)
     const fechaFormateada = format(new Date(fecha), "d 'de' MMMM", { locale: es });
 
     const handleEliminarTurno = () => {
-        const resultado = window.confirm('Eliminar este turno?')
+        const resultado = window.confirm('Eliminar este turno?');
+        console.log(turno[0]._id);
+        const turnito = turno[0]._id;
         if (resultado) {
-            dispatch(eliminarTurno({ fecha }));
-        } else {
-            return;
+            deleteTurnos(dispatch, usuario, turnito);
         }
     };
 
