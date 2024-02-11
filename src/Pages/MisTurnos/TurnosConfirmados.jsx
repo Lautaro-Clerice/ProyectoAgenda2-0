@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AgendasContainerTurnos, CambiarTurno, ContainerBotones, EliminarTurno, ObservacionesContainer, TurnoFechaContainer } from "./MisTurnosStyles";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useDispatch, useSelector } from "react-redux";
-import { eliminarTurno, setConfirmado } from '../../Redux/Slices/TurnoConfirmado'
+import { setConfirmado } from '../../Redux/Slices/TurnoConfirmado'
 import { useNavigate } from "react-router-dom";
 import deleteTurnos from "../../Axios/AxiosTurnos";
 

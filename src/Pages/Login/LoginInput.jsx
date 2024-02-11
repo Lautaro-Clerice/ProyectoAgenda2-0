@@ -4,7 +4,6 @@ import { Field, ErrorMessage } from 'formik';
 import {
   InputContainerStyled,
   ErrorMessageStyled,
-  LoginInputStyled,
 } from './LoginStyles';
 import { InputStyle } from '../../Generales/InputStyles';
 
