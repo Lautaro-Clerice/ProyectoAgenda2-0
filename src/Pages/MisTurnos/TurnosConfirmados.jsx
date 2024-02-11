@@ -20,6 +20,7 @@ const TurnosConfirmados = ({ fecha, horario }) => {
         const turnito = turno[0]._id;
         if (resultado) {
             deleteTurnos(dispatch, usuario, turnito);
+            window.location.reload()
         }
     };
 

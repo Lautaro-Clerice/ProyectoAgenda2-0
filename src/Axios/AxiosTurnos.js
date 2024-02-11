@@ -17,4 +17,17 @@ const deleteTurnos = async (dispatch, currentUser, _id) => {
   }
 };
 
+
+
+export const updateTurnos = async (dispatch, currentUser, _id) => {
+  console.log("ID del turno a eliminar:", _id);
+  try {
+      const response = await axios.delete(`${BASE_URL}turnos/${_id}`,currentUser.fecha, currentUser.horario);
+      console.log("Respuesta del servidor:", response.data);
+      
+  } catch (error) {
+      console.error("Error al eliminar el turno:", error);
+  }
+};
+
 export default deleteTurnos;
