@@ -52,7 +52,7 @@ const Registro = () => {
                             initialValues={initialValues}
                             validationSchema={validationschema}
                             onSubmit={async (values, actions) => {
-                                const user = await createUser(values.nombre, values.email,values.password, values.telefono);
+                                await createUser(values.nombre, values.email,values.password, values.telefono);
                                 actions.resetForm();   
                                 handleFormSubmit();
                             }}              

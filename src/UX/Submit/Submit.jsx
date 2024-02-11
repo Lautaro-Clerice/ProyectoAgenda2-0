@@ -1,5 +1,4 @@
 import React from 'react';
-import { ButtonSubmitStyled } from './SubmitStyles';
 import { Button } from '@nextui-org/react';
 
 const Submit = ({ children, onClick, disabled = false }) => {

@@ -14,6 +14,9 @@ import { VerifyEmail } from '../../Axios/axiosUser';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
+
+
 const VerificarEmail = () => {
     const [loading, setLoading] = useState(false);
     const navigate =useNavigate();
@@ -42,7 +45,7 @@ const VerificarEmail = () => {
                             validationSchema={codeValidationSchema}
                             onSubmit={async (values, actions) => {
                                 try {
-                                    const user = await VerifyEmail(values.email, values.code);
+                                    await VerifyEmail(values.email, values.code);
                                     actions.resetForm();
                                     handleFormCode();
                                 } catch (error) {

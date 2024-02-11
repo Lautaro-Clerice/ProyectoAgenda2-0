@@ -14,7 +14,7 @@ import { ImgMobile, LogoMobile } from "../Home/HomeStyles";
 import TurnosConfirmados from "../MisTurnos/TurnosConfirmados";
 import { IoMdPaperPlane } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { clearError, fetchturnosFail } from "../../Redux/Slices/ObtenerTurnos";
+import { clearError} from "../../Redux/Slices/ObtenerTurnos";
 import getTurnos from "../../Axios/axiosUser";
 
 
@@ -22,7 +22,7 @@ import getTurnos from "../../Axios/axiosUser";
 export const HomeUser = () => {
     const navigate = useNavigate();
     const currentUser = useSelector(state => state.user.currentUser);
-  const { turnos, error } = useSelector(state => state.turnoCliente);
+  const { turnos} = useSelector(state => state.turnoCliente);
   const dispatch = useDispatch();
 
   useEffect(() => {

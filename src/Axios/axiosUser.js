@@ -2,7 +2,7 @@
 import axios from 'axios';
 import {BASE_URL} from '../Utils/Constants'
 import { toast } from 'react-toastify';
-import { clearError, fetchturnosFail, fetchturnosStart, fetchturnosSuccess } from '../Redux/Slices/ObtenerTurnos';
+import {fetchturnosFail, fetchturnosStart, fetchturnosSuccess } from '../Redux/Slices/ObtenerTurnos';
 export const createUser = async (nombre, email, password, telefono) => {
     try {
         const response = await axios.post(

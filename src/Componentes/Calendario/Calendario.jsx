@@ -22,7 +22,6 @@ const Calendario = () => {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    // Cerrar el calendario al seleccionar una fecha
     setShowCalendar(false);
   };
 
