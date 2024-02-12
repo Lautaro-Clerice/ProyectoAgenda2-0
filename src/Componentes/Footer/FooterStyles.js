@@ -6,6 +6,7 @@ export const  ContainerFooterStyles = styled.footer`
     width: 100%;
     display: flex;
     align-items: center;
+    margin-top: 40px;
     address {
         color: black;
         font-size:16px;

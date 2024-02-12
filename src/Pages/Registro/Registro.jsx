@@ -14,19 +14,18 @@ import { useNavigate } from "react-router-dom/dist";
 import { toast } from "react-toastify";
 import Loader from "../../UX/Loader/Loader";
 import { setUser } from "../../Redux/Slices/TurnosObtenidosSlice";
-import { motion } from "framer-motion";
 import { ContainerRegistro, FormRegistro } from "./RegistroStyles";
 import { colorTemplado } from "../../UX/Colors";
 import { ImgMobile, LogoMobile } from "../Home/HomeStyles";
 import LogoCliente from "../../Imagenes/BecaShop.png";
 import { createUser } from "../../Axios/axiosUser";
+import { Button } from "@nextui-org/react";
 const Registro = () => {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleFormSubmit = async (values) => {
-       
-        await new Promise((resolve) => setTimeout(resolve, 1800));
+        setLoading(true);
         toast.success("Usuario Registrado!");
         setLoading(false);
         dispatch(setUser(values));
@@ -87,18 +86,12 @@ const Registro = () => {
                                     type="text"
                                 />
 
-                                <motion.button
-                                    whileTap={{ scale: 0.95 }}
-                                    style={{
-                                        border: "none",
-                                        padding: 0,
-                                        background: "none",
-                                        cursor: "pointer",
-                                    }}
+                                <Button
+                                color="secondary"
                                     type="submit"
                                 >                                  
-                                        {loading ? <Loader /> : "Buscar turno"}
-                                </motion.button>
+                                        {loading ? <Loader /> : "Registrar"}
+                                </Button>
                             </FormContacto>
                         </Formik>
                     </DatosTurno>

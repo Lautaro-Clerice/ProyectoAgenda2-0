@@ -7,11 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {setUser} from '../../Redux/Slices/TurnosObtenidosSlice'
 import { FiUser } from "react-icons/fi";
-import { FaArrowLeftLong } from "react-icons/fa6";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const usuario = useSelector(state => state.user.currentUser);
-  const [inputHidden, setInputHidden] = useState(false);
+  const [inputHidden] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ const Navbar = () => {
         <NavbarMenu className={isOpen ? 'open' : ''}>
           <NavbarOptions>
             <li style={!usuario ? { display: 'none' } : {}} onClick={() => {dispatch(setUser(null));toggleMenu()} }>Cerrar sesion</li>
-            <li style={usuario ? { display: 'none' } : {}} onClick={() => setInputHidden(true)}>Inicia sesion</li>
+            <li style={usuario ? { display: 'none' } : {}} onClick={() => {toggleMenu(); navigate('/login')}}>Inicia sesion</li>
             <li style={usuario ? { display: 'none' } : {}}>
               <InputStyleNavbar
                 className={inputHidden ? 'visibleInput' : ''}
@@ -59,8 +58,7 @@ const Navbar = () => {
           </NavbarOptions>
         </NavbarMenu>
         <ContainerBack>
-          <FaArrowLeftLong className='FaArrowLeftLong'/>
-          <h2>Volver</h2>
+          
         </ContainerBack>
         <ContainerUser onClick={toggleMenu}>
           <FiUser className='iconUser' />

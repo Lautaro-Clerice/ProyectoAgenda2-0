@@ -14,11 +14,12 @@ import Registro from '../Pages/Registro/Registro';
 import ElegirTurno from '../Pages/ElegirTurno/ElegirTurno';
 import { HomeUser } from '../Pages/HomeUser/HomeUser';
 import { useSelector } from 'react-redux';
-import '../transition.css';
+import '../transition.css'; 
 import Login from '../Pages/Login/Login';
 import VerificarEmail from '../Pages/VerificarEmail/VerificarEmail';
 
 const Routes = () => {
+
   const user = useSelector((state) => state.user.currentUser);
 
   return (
@@ -26,17 +27,27 @@ const Routes = () => {
       <Layout>
         <ReactDomRoutes>
           <Route
+            path="/"
+            element={
+              user ? (
+                <Navigate to="/home" />
+              ) : (
+                <CSSTransition
+                  classNames="fade"
+                  timeout={300}
+                  appear
+                  in={true}
+                  unmountOnExit
+                >
+                  <Home />
+                </CSSTransition>
+              )
+            }
+          />
+          <Route
             path="/nav"
             element={
-              <CSSTransition
-                classNames="fade"
-                timeout={300}
-                appear
-                in={true}
-                unmountOnExit
-              >
-                <Navbar />
-              </CSSTransition>
+              <Navbar />
             }
           />
           <Route
@@ -109,24 +120,6 @@ const Routes = () => {
               >
                 <VerificarEmail />
               </CSSTransition>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              user ? (
-                <Navigate to="/home" />
-              ) : (
-                <CSSTransition
-                  classNames="fade"
-                  timeout={300}
-                  appear
-                  in={true}
-                  unmountOnExit
-                >
-                  <Home />
-                </CSSTransition>
-              )
             }
           />
           <Route path="*" element={<p>error</p>} />

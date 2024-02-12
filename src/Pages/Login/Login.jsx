@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import Submit from '../../UX/Submit/Submit'
 import LoginInput from './LoginInput'
 import {
   Form,
@@ -21,6 +20,8 @@ import { toast } from 'react-toastify';
 import {nombreCliente} from '../../Cliente/ArchivosCliente'
 import Loader from '../../UX/Loader/Loader';
 import { useState } from 'react';
+import { Button } from '@nextui-org/react';
+import { colorPrincipal } from '../../UX/Colors';
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -28,8 +29,6 @@ const Login = () => {
 
   const handleForLogin = async () => {
     setLoading(true);
-   
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     toast.success(`Bienvenido a ${nombreCliente}`);
     setLoading(false);
     navigate('/home');
@@ -60,10 +59,10 @@ const Login = () => {
         <Form>
           <LoginInput name='email' type='text' placeholder='Email' />
           <LoginInput name='password' type='password' placeholder='Password' />
-          <Link to='/register'>
-            <LoginEmailStyled>¿No tenes cuenta? Crea una</LoginEmailStyled>
+          <Link to='/registro'>
+            <LoginEmailStyled>¿No tenes cuenta? Crea <span style={{color: colorPrincipal}}>una</span></LoginEmailStyled>
           </Link>
-          <Submit>{loading ? <Loader/> : 'Iniciar sesion'}</Submit>
+          <Button type='submit' color='secondary'>{loading ? <Loader/> : 'Iniciar sesion'}</Button>
         </Form>
       </Formik>
     </LoginContainerStyled>

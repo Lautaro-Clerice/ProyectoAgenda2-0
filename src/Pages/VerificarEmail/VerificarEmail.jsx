@@ -58,7 +58,7 @@ const VerificarEmail = () => {
                         <Form className='form'>
                             <Field as={InputStyleCodigo} name='email' type='email' placeholder='Ingresa tu email aca'/>
                             <Field as={InputStyleCodigo} name='code' type='text' placeholder='Ingresa tu codigo aca'/>
-                            <Button type="submit">                                  
+                            <Button color='secondary' type="submit">                                  
                                         {loading ? <Loader /> : "Enviar"}
                                 </Button>
                         </Form>

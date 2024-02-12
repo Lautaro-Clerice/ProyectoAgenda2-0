@@ -48,7 +48,7 @@ export const HomeUser = () => {
                     <h2>Mis Turnos</h2>
                     <p>
                         Bienvenido a tu dashboard! Aca podes ver tus turnos,
-                        modificarlos o eliminarlos.
+                        agregar o eliminarlos.
                     </p>
                 </TitleHomeUser>
                 <TurnosProximos>

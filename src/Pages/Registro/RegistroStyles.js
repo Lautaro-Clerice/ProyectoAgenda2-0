@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ContainerRegistro = styled.div`
     width: 60%;
-    height: 100vh;
+    height: auto;
     overflow: hidden;
     justify-content:center;
     display: flex;
@@ -13,7 +13,7 @@ export const ContainerRegistro = styled.div`
     @media (max-width:600px){
         justify-content: start;
         width: 100%;
-        height: 900px;
+        height: auto;
     }
 `
 
