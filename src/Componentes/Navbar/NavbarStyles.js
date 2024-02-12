@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {
-    colorPrincipal, colorTemplado
+    colorPrincipal,colorTemplado
 } from "../../UX/Colors";
 
 export const NavbarContainer = styled.div`
@@ -9,7 +9,7 @@ export const NavbarContainer = styled.div`
     height: 75px;
     background-color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     z-index: 111111111111;
     @media (max-width: 600px) {
         justify-content: space-between;
@@ -29,6 +29,11 @@ export const ContainerBack = styled.div`
 
     .FaArrowLeftLong{
         color: ${colorPrincipal};
+    }
+    .icon{
+        color:black;
+        font-size:28px;
+        margin-left:10px;
     }
 `
 export const LogoCliente = styled.img`
@@ -57,12 +62,17 @@ export const NavbarMenu = styled.div`
         transform: translateX(0);
         opacity: 1;
     }
+    @media(min-width:600px){
+        width: 20%;
+        left: 20%;
+        top: 59px;
+    }
 `;
 export const ContainerUser = styled.div`
     width: 160px;
     border-radius: 12px;
     height: 50px;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: end;
     gap: 10px;
@@ -71,6 +81,12 @@ export const ContainerUser = styled.div`
         width: 25px;
         height: 25px;
     }
+    .gradiente {
+        background: linear-gradient(to right, #8A2BE2, #800080, #9932CC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  }
     .login {
         color: black;
 font-size: 18px;

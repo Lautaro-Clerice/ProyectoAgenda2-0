@@ -7,6 +7,10 @@ export const  ContainerFooterStyles = styled.footer`
     display: flex;
     align-items: center;
     margin-top: 40px;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    
     address {
         color: black;
         font-size:16px;

@@ -1,7 +1,16 @@
 import styled from "styled-components";
-import {colorBorders } from "../../UX/Colors";
+import {colorBorders, colorTemplado } from "../../UX/Colors";
 
-
+export const CalendarioPadre = styled.div`
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  .icon {
+    font-size: 24px;
+    color: #DB4ECF;
+  }
+`
 export const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,4 +50,9 @@ export const ContainerTurnosDispo = styled.div`
   gap: 10px;
   justify-content: center;
   align-items: center;
+  p{
+    color: ${colorTemplado};
+    margin-top: 100px;
+    text-align: center;
+  }
 `

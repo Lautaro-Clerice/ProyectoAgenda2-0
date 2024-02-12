@@ -5,6 +5,7 @@ import { es } from "date-fns/locale";
 import { useDispatch, useSelector } from "react-redux";
 import deleteTurnos from "../../Axios/AxiosTurnos";
 import { toast } from "react-toastify";
+import { colorPrincipal } from "../../UX/Colors";
 
 const TurnosConfirmados = ({ fecha, horario }) => {
     const dispatch = useDispatch();
@@ -34,8 +35,10 @@ const TurnosConfirmados = ({ fecha, horario }) => {
             </TurnoFechaContainer>
             <ObservacionesContainer>
                 <h2 className="observacion">
-                    Tenes 10 minutos de tolerancia para tu turno. Cancelaciones
-                    antes de las 24 hs, sino se debera abonar el 40% del turno
+                    Tenes 10 minutos de tolerancia para tu turno.<br/> <span style={{color:'red'}}> Cancelaciones </span>
+                    antes de las 24 hs, sino se debera abonar el 40% del turno. <br/>
+                    Ante cualquier duda con tu turno<a href="
+                    https://wa.link/30q4cm" target="blank" style={{color: colorPrincipal}}> presiona aca</a>
                 </h2>
             </ObservacionesContainer>
             <ContainerBotones>

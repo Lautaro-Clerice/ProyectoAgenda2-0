@@ -60,7 +60,7 @@ const Login = () => {
           <LoginInput name='email' type='text' placeholder='Email' />
           <LoginInput name='password' type='password' placeholder='Password' />
           <Link to='/registro'>
-            <LoginEmailStyled>¿No tenes cuenta? Crea <span style={{color: colorPrincipal}}>una</span></LoginEmailStyled>
+            <LoginEmailStyled>¿No tenes cuenta?  <span style={{color: colorPrincipal}}>Crea una</span></LoginEmailStyled>
           </Link>
           <Button type='submit' color='secondary'>{loading ? <Loader/> : 'Iniciar sesion'}</Button>
         </Form>

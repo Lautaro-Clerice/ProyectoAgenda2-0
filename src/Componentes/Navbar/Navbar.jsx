@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {setUser} from '../../Redux/Slices/TurnosObtenidosSlice'
 import { FiUser } from "react-icons/fi";
+import { IoHomeOutline } from "react-icons/io5";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const usuario = useSelector(state => state.user.currentUser);
@@ -14,17 +15,53 @@ const Navbar = () => {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  return (
+
+  const handleLogin = () => {
+    toggleMenu(); 
+    navigate('/login');
+  }
+
+
+
+  const registrateHandle =() => {
+    navigate('/Registro');
+     toggleMenu();
+ }
+
+
+ const ingresarHandle = () => {
+    if (usuario === null) {
+      toast.error('Correo no registrado');
+    } else if (usuario && inputValue === usuario.email) {
+      navigate('/Home');
+      setIsOpen(false);
+    } else if (inputValue === '') {
+      toast.error('Debe completar con su correo');
+    }
+  }
+
+
+
+  const cerrarSesionHandle = () => {
+    dispatch(setUser(null));
+    toggleMenu();
+  }
+
+
+
+  return ( 
     <>
       <NavbarContainer>
         <NavbarMenu className={isOpen ? 'open' : ''}>
           <NavbarOptions>
-            <li style={!usuario ? { display: 'none' } : {}} onClick={() => {dispatch(setUser(null));toggleMenu()} }>Cerrar sesion</li>
-            <li style={usuario ? { display: 'none' } : {}} onClick={() => {toggleMenu(); navigate('/login')}}>Inicia sesion</li>
+            <li style={!usuario ? { display: 'none' } : {}} onClick={cerrarSesionHandle}>Cerrar sesion</li>
+            <li style={usuario ? { display: 'none' } : {}} onClick={handleLogin}>Inicia sesion</li>
             <li style={usuario ? { display: 'none' } : {}}>
               <InputStyleNavbar
                 className={inputHidden ? 'visibleInput' : ''}
@@ -40,25 +77,24 @@ const Navbar = () => {
                   transform: inputHidden ? 'scale(1)' : 'scale(0.5)',
                   transition: '0.3s'
                 }}
-                onClick={() => {
-                  if (usuario === null) {
-                    toast.error('Correo no registrado');
-                  } else if (usuario && inputValue === usuario.email) {
-                    navigate('/Home');
-                    setIsOpen(false);
-                  } else if (inputValue === '') {
-                    toast.error('Debe completar con su correo');
-                  }
-                }}
+                onClick={ingresarHandle}
               >
                 Ingresar
               </Button>
             </li>
-            <li style={usuario ? { display: 'none' } : {}} onClick={() => {navigate('/Registro'); toggleMenu()}}>Registrate</li>
+            <li style={usuario ? { display: 'none' } : {}} onClick={registrateHandle}>Registrate</li>
           </NavbarOptions>
         </NavbarMenu>
         <ContainerBack>
-          
+
+          {usuario ? (
+            <IoHomeOutline className='icon' onClick={() => navigate('/home')}/>
+          ):(
+            ''
+          )
+            
+            
+          }
         </ContainerBack>
         <ContainerUser onClick={toggleMenu}>
           <FiUser className='iconUser' />
@@ -66,7 +102,7 @@ const Navbar = () => {
             {usuario == null ? (
               <>Iniciar <span>sesion</span></>
             ) : (
-              <>Hola <span> {usuario.name}</span></>
+              <>Hola <span className='gradiente'> {usuario.nombre}</span></>
             )}
           </h2>
         </ContainerUser>

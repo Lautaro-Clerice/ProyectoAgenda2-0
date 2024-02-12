@@ -20,7 +20,8 @@ export const OpcionesContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 80px;
+    height: 50px;
     border: 1px solid ${colorBorders};
     border-radius: 9px;
     p{

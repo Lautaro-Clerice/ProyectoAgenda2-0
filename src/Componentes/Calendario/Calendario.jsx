@@ -4,8 +4,8 @@ import 'react-calendar/dist/Calendar.css';
 import { useSelector} from 'react-redux';
 import TurnosMaqueta from '../../Turnos/TurnosMaqueta';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import { BotonCalendario, CalendarContainer, ContainerTurnosDispo } from './CalendarioStyles';
-import { colorTemplado } from '../../UX/Colors';
+import { BotonCalendario, CalendarContainer, CalendarioPadre, ContainerTurnosDispo } from './CalendarioStyles';
+
 
 const Calendario = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -31,10 +31,10 @@ const Calendario = () => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%' }}>
+    <CalendarioPadre>
       <div style={{ position: 'relative' }}>
         <BotonCalendario onClick={toggleCalendar}>
-          <FaRegCalendarAlt style={{ fontSize: '24px', color: '#DB4ECF' }} />
+          <FaRegCalendarAlt className='icon' />
           <p>Elegi una fecha...</p>
         </BotonCalendario>
         {showCalendar && (
@@ -49,13 +49,13 @@ const Calendario = () => {
                     <TurnosMaqueta key={turno.id} fecha={turno.fecha} horario={turno.horario} />
                   ))
                 ) : (
-                  <p style={{ color: colorTemplado, marginTop: '100px', textAlign: 'center' }}>
+                  <p>
                     No hay turnos disponibles para la fecha seleccionada
                   </p>
                 )}
         </ContainerTurnosDispo>
       
-    </div>
+    </CalendarioPadre>
   );
 };
 

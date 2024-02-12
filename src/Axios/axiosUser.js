@@ -16,7 +16,7 @@ export const createUser = async (nombre, email, password, telefono) => {
     } catch (error) {
         toast.warn(error.response.data.errors[0].msg)
         console.log(error);
-        throw error;  // Propagar el error
+        throw error;
     }
 }
 
@@ -31,7 +31,7 @@ export const loginUser = async (email, password) => {
     } catch (error) {
         alert(error.response.data.msg);
         console.log(error);
-        throw error;  // Propagar el error
+        throw error;
     }
 }
 

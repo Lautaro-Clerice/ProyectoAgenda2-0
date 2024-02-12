@@ -29,15 +29,11 @@ const HomeStyles = () => {
                 </TitleMobile>
                 <ContainerBotonesHome>
                     <button
-                        color="secondary"
-                        style={{ width: "130px" }}
                         onClick={() => navigate('/login')}
                     >
                         Ingresar con Email
                     </button>
                     <button
-                        color="secondary"
-                        style={{ width: "130px" }}
                         onClick={() => navigate("/Registro")}
                     >
                         Registrarse

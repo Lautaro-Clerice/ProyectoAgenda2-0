@@ -83,6 +83,9 @@ const Routes = () => {
           <Route
             path="/ElegirTurno"
             element={
+              !user ? (
+                <Navigate to="/" />
+              ) : (
               <CSSTransition
                 classNames="fade"
                 timeout={300}
@@ -92,6 +95,7 @@ const Routes = () => {
               >
                 <ElegirTurno />
               </CSSTransition>
+              )
             }
           />
            <Route

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 export const validationschema = Yup.object({
   nombre: Yup.string()
     .trim()
-    .max(10, 'El nombre debe ser menor a 10 caracteres')
+    .max(30, 'El nombre debe ser menor a 30 caracteres')
     .required('Este campo es obligatorio'),
     email: Yup.string()
     .email('Debes ingresar un Mail valido')
