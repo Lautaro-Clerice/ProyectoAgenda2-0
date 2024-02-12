@@ -64,7 +64,7 @@ const TurnosMaqueta = ({ fecha, horario }) => {
                     handleAgendarClick();
                     AgendarTurnosBD();
                   }}>
-                <p>{horario}</p>
+                <h2 className='horario'>{horario}</h2>
               </OpcionesContainer>
             </TurnosContainer>
           </TurnosPadre>

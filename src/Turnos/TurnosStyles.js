@@ -23,10 +23,10 @@ export const OpcionesContainer = styled.div`
     height: 50px;
     border: 1px solid ${colorBorders};
     border-radius: 9px;
-    p{
+    .horario{
+        align-self: center;
         height:24px;
         font-size:14px;
-        margin: 0;
         font-weight: 500;
         color: ${colorTemplado};
     }
