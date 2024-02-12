@@ -37,8 +37,8 @@ const TurnosConfirmados = ({ fecha, horario }) => {
                 <h2 className="observacion">
                     Tenes 10 minutos de tolerancia para tu turno.<br/> <span style={{color:'red'}}> Cancelaciones </span>
                     antes de las 24 hs, sino se debera abonar el 40% del turno. <br/>
-                    Ante cualquier duda con tu turno<a href="
-                    https://wa.link/30q4cm" target="blank" style={{color: colorPrincipal}}> presiona aca</a>
+                    Ante cualquier duda con tu turno hace <a href="
+                    https://wa.link/30q4cm" target="blank" style={{color: colorPrincipal}}> Click aca. </a>
                 </h2>
             </ObservacionesContainer>
             <ContainerBotones>
