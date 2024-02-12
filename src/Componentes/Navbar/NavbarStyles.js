@@ -75,6 +75,7 @@ export const ContainerUser = styled.div`
     display: flex;
     align-items: center;
     justify-content: end;
+    margin-top: 10px;
     gap: 10px;
     .iconUser {
         color: black;
