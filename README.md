@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Agenda de Turnos para Estética 💇‍♀️💅
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+¡Bienvenido a la Agenda de Turnos para Estética! Esta aplicación te permite agendar tus turnos de manera fácil y rápida para tu negocio de estética. La idea detrás de este proyecto es proporcionar una solución escalable y personalizable para cualquier tipo de negocio. Esta es la vista del cliente, aun falta subir la vista del dashboard de empresa.
 
-## Available Scripts
+## Características 🚀
 
-In the project directory, you can run:
+- **Agenda de Turnos**: Permite a los clientes reservar y gestionar sus turnos de manera eficiente.
+- **Escalabilidad**: Diseñada para ser fácilmente escalable a medida que tu negocio crece.
+- **Personalización**: Puedes personalizar la aplicación para adaptarla a las necesidades específicas de tu negocio.
+- **React.js**: Desarrollada utilizando React.js para una interfaz de usuario interactiva y moderna.
+- **API Personalizada**: Integrada con una API personalizada para el manejo de los datos y la lógica del negocio.
 
-### `npm start`
+## Uso 📝
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clona este repositorio en tu máquina local.
+2. Instala las dependencias utilizando `npm install`.
+3. Configura la conexión a tu API personalizada en el archivo de configuración.
+4. Ejecuta la aplicación con `npm start`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Contribuciones 💡
 
-### `npm test`
+¡Se aceptan contribuciones! Si tienes ideas para mejorar esta aplicación, no dudes en crear una solicitud de extracción (pull request).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contacto 📧
 
-### `npm run build`
+Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Email: clericedev.
+- LinkedIn: [Lautaro clerice](https://www.linkedin.com/in/lautaroclerice/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+¡Gracias por utilizar la Agenda de Turnos para Estética!
