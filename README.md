@@ -25,7 +25,7 @@
 
 Si tienes alguna pregunta o sugerencia, no dudes en contactarme:
 
-- Email: clericedev.
+- Email: clericedev@gmail.com
 - LinkedIn: [Lautaro clerice](https://www.linkedin.com/in/lautaroclerice/)
 
 ¡Gracias por utilizar la Agenda de Turnos para Estética!
