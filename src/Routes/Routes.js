@@ -17,6 +17,8 @@ import { useSelector } from 'react-redux';
 import '../transition.css'; 
 import Login from '../Pages/Login/Login';
 import VerificarEmail from '../Pages/VerificarEmail/VerificarEmail';
+import ElegirEmpleado from '../Pages/ElegirEmpleado/ElegirEmpleado';
+
 
 const Routes = () => {
 
@@ -44,6 +46,7 @@ const Routes = () => {
               )
             }
           />
+          
           <Route
             path="/nav"
             element={
@@ -64,6 +67,7 @@ const Routes = () => {
               </CSSTransition>
             }
           />
+           
           <Route
             path="/Home"
             element={
@@ -126,9 +130,24 @@ const Routes = () => {
               </CSSTransition>
             }
           />
+          <Route
+            path="/Elegir"
+            element={
+              <CSSTransition
+                classNames="fade"
+                timeout={300}
+                appear
+                in={true}
+                unmountOnExit
+              >
+                <ElegirEmpleado />
+              </CSSTransition>
+            }
+          />
           <Route path="*" element={<p>error</p>} />
         </ReactDomRoutes>
       </Layout>
+      
     </BrowserRouter>
   );
 };

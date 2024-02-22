@@ -60,7 +60,7 @@ export const HomeUser = () => {
                 ) : (
                     <SinTurnoContainer>
                         <p>No tenes turnos tomados</p>
-                        <CambiarTurno className="BotonAgregar" onClick={() => navigate('/ElegirTurno')}>Agregar turno <IoMdPaperPlane className="icon"/></CambiarTurno>
+                        <CambiarTurno className="BotonAgregar" onClick={() => navigate('/Elegir')}>Agregar turno <IoMdPaperPlane className="icon"/></CambiarTurno>
 
                     </SinTurnoContainer>
                 )}
