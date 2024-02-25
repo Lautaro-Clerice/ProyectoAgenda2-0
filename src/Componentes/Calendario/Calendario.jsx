@@ -1,31 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TurnosMaqueta from '../../Turnos/TurnosMaqueta';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { BotonCalendario, CalendarContainer, CalendarioPadre, ContainerTurnosDispo } from './CalendarioStyles';
-
+import { getTurnosAsync } from '../../Redux/Slices/TurnosSlices';
+import { format } from 'date-fns';
 
 const Calendario = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [turnosFechaSeleccionada, setTurnosFechaSeleccionada] = useState([]);
   const [showCalendar, setShowCalendar] = useState(false);
-  const turnosDisponibles = useSelector((state) => state.turnos.turnos);
-
+  const turnosDisponibles = useSelector((state) => state.turnos.turnos.data);
+  const dispatch =useDispatch();
   useEffect(() => {
-    const turnos = turnosDisponibles.filter((turno) => {
-      return turno.fecha === selectedDate.toISOString().split('T')[0];
-    });
+    dispatch(getTurnosAsync());
+  }, [dispatch]);
+  useEffect(() => {
+    const selectedDateString = format(selectedDate, 'yyyy-MM-dd');
+    const turnos = turnosDisponibles.filter((turno) => turno.fecha === selectedDateString);
     setTurnosFechaSeleccionada(turnos);
   }, [selectedDate, turnosDisponibles]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setShowCalendar(false);
+    console.log(selectedDate);
   };
 
-  
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
   };
@@ -43,18 +46,15 @@ const Calendario = () => {
           </CalendarContainer>
         )}
       </div>
-        <ContainerTurnosDispo>
-          {turnosFechaSeleccionada.length > 0 ? (
-                  turnosFechaSeleccionada.map((turno) => (
-                    <TurnosMaqueta key={turno.id} fecha={turno.fecha} horario={turno.horario} />
-                  ))
-                ) : (
-                  <p>
-                    No hay turnos disponibles para la fecha seleccionada
-                  </p>
-                )}
-        </ContainerTurnosDispo>
-      
+      <ContainerTurnosDispo>
+        {turnosFechaSeleccionada.length > 0 ? (
+          turnosFechaSeleccionada.map((turno) => (
+            <TurnosMaqueta key={turno.id} fecha={turno.fecha} horario={turno.horario} />
+          ))
+        ) : (
+          <p>No hay turnos disponibles para la fecha seleccionada</p>
+        )}
+      </ContainerTurnosDispo>
     </CalendarioPadre>
   );
 };

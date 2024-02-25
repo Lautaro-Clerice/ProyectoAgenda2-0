@@ -31,3 +31,13 @@ export const updateTurnos = async (dispatch, currentUser, _id) => {
 };
 
 export default deleteTurnos;
+
+export const getTurnosLibres = async(dispatch) => {
+    try {
+        const turnosLibres = await axios.get(`${BASE_URL}turnos/TLibres`)
+        console.log(turnosLibres);
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

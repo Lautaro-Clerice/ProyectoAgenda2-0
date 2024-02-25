@@ -6,6 +6,7 @@ import empleado from '../../Imagenes/user.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import {getEmpleados} from '../../Axios/axiosEmpleados'
 import { useNavigate } from 'react-router-dom'
+import { setEmpElegido } from '../../Redux/Slices/EmpleadoElegidoSlice'
 const ElegirEmpleado = () => {
   const {empleados, error} = useSelector(state => state.listaEmpleados);
   const dispatch = useDispatch();
@@ -15,6 +16,12 @@ const ElegirEmpleado = () => {
       getEmpleados(dispatch)
     }
   }, [empleados, error, dispatch])
+
+  const handleSelectEmp = (nombre) => {
+    dispatch(setEmpElegido(nombre));
+    navigate('/elegirturno')
+  }
+
   return (
     <>
       <ContainerPadre>
@@ -31,7 +38,7 @@ const ElegirEmpleado = () => {
           </EmpleadoOption>
             { empleados !== null ? (
               empleados.map(emp => (
-                <EmpleadoOption onClick={() => navigate('/elegirturno')}>
+                <EmpleadoOption onClick={() => handleSelectEmp(emp.nombre) }>
                   <NombreEmpleado>
                     <img src={empleado} alt="empleado" />
                     <p>{emp.nombre}</p>

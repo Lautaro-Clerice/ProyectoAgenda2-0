@@ -1,17 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { turnos } from "../../Turnos/turnosLibres";
+import axios from 'axios';
+import { BASE_URL } from "../../Utils/Constants";
 
 const INITIAL_STATE = {
-  turnos: turnos.turnos,
+  turnos: null,
+  loading: false,
+  error: null 
 };
 
+export const getTurnosAsync = () => async (dispatch) => {
+  dispatch(turnosSlice.actions.getTurnosStart());
+
+  try {
+    const response = await axios.get(`${BASE_URL}turnos/TLibres`);
+    dispatch(turnosSlice.actions.getTurnosSuccess(response.data));
+  } catch (error) {
+    dispatch(turnosSlice.actions.getTurnosFailure(error));
+  }
+};
 
 export const turnosSlice = createSlice({
   name: "turnos",
   initialState: INITIAL_STATE,
   reducers: {
-    getTurnos: (state) => {
-      return state;
+    getTurnosStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    getTurnosSuccess: (state, action) => {
+      state.loading = false;
+      state.turnos = action.payload;
+    },
+    getTurnosFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
     eliminarTurnoSeleccionado: (state, action) => {
       const { fecha, horario } = action.payload;
@@ -22,5 +44,5 @@ export const turnosSlice = createSlice({
   },
 });
 
-export const { getTurnos, eliminarTurnoSeleccionado } = turnosSlice.actions;
+export const { eliminarTurnoSeleccionado } = turnosSlice.actions;
 export default turnosSlice.reducer;
