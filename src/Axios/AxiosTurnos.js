@@ -41,3 +41,24 @@ export const getTurnosLibres = async(dispatch) => {
         
     }
 }
+
+
+export const ocuparTurnoLibre = (id) => {
+
+    try {
+        const cambio = axios.patch(`${BASE_URL}turnos/${id}`);
+        console.log("Respuesta del servidor:", cambio.data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export const liberarTurno = async (datosturno) => {
+    try {
+        const cambio = await axios.put(`${BASE_URL}turnos/liberar`, datosturno);
+        console.log("Respuesta del servidor:", cambio.data);
+    } catch (error) {
+        console.log(error);
+    }
+}

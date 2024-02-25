@@ -1,52 +1,41 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { OpcionesContainer, TurnosContainer, TurnosPadre } from './TurnosStyles';
-import { useDispatch, useSelector } from 'react-redux';
-import { setConfirmado } from '../Redux/Slices/TurnoConfirmado';
-import { eliminarTurnoSeleccionado } from '../Redux/Slices/TurnosSlices';
+import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom/dist';
 import { AgendarTurno } from '../Axios/axiosUser';
+import { ocuparTurnoLibre } from '../Axios/AxiosTurnos';
 
-const TurnosMaqueta = ({ fecha, horario }) => {
-  const dispatch = useDispatch();
+const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
   const usuario = useSelector((state) => state.user.currentUser);
   const [isRemoving, setIsRemoving] = useState(false);
   const navigate = useNavigate();
+  
   const AgendarTurnosBD = async () => {
     const turnoData = {
       horario: horario,
       fecha: fecha,
+      empleado:empleado,
       name: usuario.nombre,
       email: usuario.email,
       telefono: usuario.telefono,
-
     };
+    
     try {
-      await AgendarTurno(usuario, turnoData);
-      navigate('/home');
+      await Promise.all([
+        AgendarTurno(usuario, turnoData),
+        
+        ocuparTurnoLibre(id),
+      ]);
+      setTimeout(() => {
+        console.log(id);
+        navigate('/Home');
+      }, 1000);
     } catch (error) {
       alert('Error al crear la orden');
     }
-  }
-
-  const handleAgendarClick = () => {
-    setIsRemoving(true);
-    setTimeout(() => {
-      dispatch(
-        eliminarTurnoSeleccionado({
-          fecha,
-          horario,
-        })
-      );
-      dispatch(setConfirmado({ usuario, fecha, horario  }));
-      setIsRemoving(false);
-    }, 300);
-    setTimeout(() => {
-      navigate('/Home')
-    }, 1000)
   };
-
 
   return (
     <AnimatePresence mode='wait'> 
@@ -61,9 +50,8 @@ const TurnosMaqueta = ({ fecha, horario }) => {
           <TurnosPadre>
             <TurnosContainer>
               <OpcionesContainer onClick={() => {
-                    handleAgendarClick();
-                    AgendarTurnosBD();
-                  }}>
+                AgendarTurnosBD();
+              }}>
                 <h2 className='horario'>{horario}</h2>
               </OpcionesContainer>
             </TurnosContainer>

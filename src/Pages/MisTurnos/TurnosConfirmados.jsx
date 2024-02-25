@@ -3,24 +3,27 @@ import { AgendasContainerTurnos, ContainerBotones, EliminarTurno, ObservacionesC
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useDispatch, useSelector } from "react-redux";
-import deleteTurnos from "../../Axios/AxiosTurnos";
+import deleteTurnos, { liberarTurno } from "../../Axios/AxiosTurnos";
 import { toast } from "react-toastify";
 import { colorPrincipal } from "../../UX/Colors";
 
-const TurnosConfirmados = ({ fecha, horario }) => {
+const TurnosConfirmados = ({ fecha, horario, empleado}) => {
     const dispatch = useDispatch();
     const usuario = useSelector((state) => state.user.currentUser.token);
     const turno = useSelector((state) => state.turnoCliente.turnos)
-    const fechaFormateada = format(new Date(fecha), "d 'de' MMMM", { locale: es });
 
     const handleEliminarTurno = async () => {
+        const datosTurnos= {fecha, horario, empleado}
         const resultado = window.confirm('Eliminar este turno?');
         console.log(turno[0]._id);
+        
         const turnito = turno[0]._id;
         if (resultado) {
+            
+            liberarTurno(datosTurnos)
             deleteTurnos(dispatch, usuario, turnito);
             toast.success('Turno eliminado con exito')
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 1000));
             window.location.reload()
         }
     };
@@ -30,7 +33,7 @@ const TurnosConfirmados = ({ fecha, horario }) => {
         <AgendasContainerTurnos>
             <TurnoFechaContainer>
                 <h2 className="turno">
-                    {fechaFormateada}, {horario}
+                    {fecha}, {horario}
                 </h2>
             </TurnoFechaContainer>
             <ObservacionesContainer>

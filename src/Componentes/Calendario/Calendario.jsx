@@ -23,7 +23,7 @@ const Calendario = () => {
   useEffect(() => {
     const formattedSelectedDate = format(selectedDate, 'yyyy-MM-dd');
     const turnosFiltradosPorEmpleado = allTurnosDisponibles.filter(turno => turno.empleado === EmpleadoSeleccionado);
-    const turnosParaFechaSeleccionada = turnosFiltradosPorEmpleado.filter(turno => turno.fecha === formattedSelectedDate);
+    const turnosParaFechaSeleccionada = turnosFiltradosPorEmpleado.filter(turno => turno.fecha === formattedSelectedDate && turno.status !== 'Ocupado');
     setTurnosFechaSeleccionada(turnosParaFechaSeleccionada);
   }, [selectedDate, allTurnosDisponibles, EmpleadoSeleccionado]);
 
@@ -52,7 +52,7 @@ const Calendario = () => {
       <ContainerTurnosDispo>
         {turnosFechaSeleccionada.length > 0 ? (
           turnosFechaSeleccionada.map((turno) => (
-            <TurnosMaqueta key={turno.id} fecha={turno.fecha} horario={turno.horario} />
+            <TurnosMaqueta key={turno._id} id={turno.id} fecha={turno.fecha} horario={turno.horario} empleado={turno.empleado} />
           ))
         ) : (
           <p>No hay turnos disponibles para la fecha seleccionada</p>

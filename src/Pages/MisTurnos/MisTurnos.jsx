@@ -25,7 +25,7 @@ const MisTurnos = () => {
                     <h2>Mis turnos</h2>
                 </TitleTurnos>
                 {turnos?.length? (
-                    turnos.map( turno => <TurnosConfirmados {...turno}/>)
+                    turnos.map( (turno) => <TurnosConfirmados key={turno._id} id={turno.id}  fecha={turno.fecha} horario={turno.horario} />)
                 ) : (   
                     <SinTurnoContainer>
                         <p>No tenes turnos tomados</p>

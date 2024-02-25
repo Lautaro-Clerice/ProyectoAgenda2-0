@@ -17,25 +17,21 @@ import { useNavigate } from "react-router-dom";
 import { clearError} from "../../Redux/Slices/ObtenerTurnos";
 import getTurnos from "../../Axios/axiosUser";
 
-
-
 export const HomeUser = () => {
     const navigate = useNavigate();
     const currentUser = useSelector(state => state.user.currentUser);
-  const { turnos} = useSelector(state => state.turnoCliente);
-  const dispatch = useDispatch();
+    const turnos = useSelector((state) => state.turnoCliente.turnos)
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!currentUser) {
-        dispatch(clearError());
-    } else {
-        getTurnos(dispatch, currentUser);
-    }
-}, [dispatch, currentUser]);
-
+    useEffect(() => {
+        if (!currentUser) {
+            dispatch(clearError());
+        } else {
+            getTurnos(dispatch, currentUser);
+        }
+    }, [dispatch, currentUser]);
 
     return (
-        <>
         <ContainerPadre>
             <ContainerAll style={{ justifyContent: "start" }}>
                 <ImgMobile style={{ justifyContent: "start" }}>
@@ -55,19 +51,18 @@ export const HomeUser = () => {
                     <p>Proximos Turnos</p>
                 </TurnosProximos>
                 <TurnosContainer>
-                    {turnos?.length? (
-                    turnos.map( turno => <TurnosConfirmados key={turno._id} {...turno}/> )
-                ) : (
-                    <SinTurnoContainer>
-                        <p>No tenes turnos tomados</p>
-                        <CambiarTurno className="BotonAgregar" onClick={() => navigate('/Elegir')}>Agregar turno <IoMdPaperPlane className="icon"/></CambiarTurno>
-
-                    </SinTurnoContainer>
-                )}
+                    {turnos?.length ? (
+                        turnos.map(turno => <TurnosConfirmados key={turno._id} id={turno.id} fecha={turno.fecha} horario={turno.horario} empleado={turno.empleado} />)
+                    ) : (
+                        <SinTurnoContainer>
+                            <p>No tenes turnos tomados</p>
+                            <CambiarTurno className="BotonAgregar" onClick={() => navigate('/Elegir')}>Agregar turno <IoMdPaperPlane className="icon"/></CambiarTurno>
+                        </SinTurnoContainer>
+                    )}
                 </TurnosContainer>
-                
             </ContainerAll>
         </ContainerPadre>
-        </>
     );
 };
+
+export default HomeUser;
