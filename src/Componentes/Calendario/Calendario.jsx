@@ -12,21 +12,24 @@ const Calendario = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [turnosFechaSeleccionada, setTurnosFechaSeleccionada] = useState([]);
   const [showCalendar, setShowCalendar] = useState(false);
-  const turnosDisponibles = useSelector((state) => state.turnos.turnos.data);
-  const dispatch =useDispatch();
+  const allTurnosDisponibles = useSelector((state) => state.turnos.turnos.data);
+  const {EmpleadoSeleccionado} = useSelector(state => state.empleadoSeleccionado);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getTurnosAsync());
   }, [dispatch]);
+
   useEffect(() => {
-    const selectedDateString = format(selectedDate, 'yyyy-MM-dd');
-    const turnos = turnosDisponibles.filter((turno) => turno.fecha === selectedDateString);
-    setTurnosFechaSeleccionada(turnos);
-  }, [selectedDate, turnosDisponibles]);
+    const formattedSelectedDate = format(selectedDate, 'yyyy-MM-dd');
+    const turnosFiltradosPorEmpleado = allTurnosDisponibles.filter(turno => turno.empleado === EmpleadoSeleccionado);
+    const turnosParaFechaSeleccionada = turnosFiltradosPorEmpleado.filter(turno => turno.fecha === formattedSelectedDate);
+    setTurnosFechaSeleccionada(turnosParaFechaSeleccionada);
+  }, [selectedDate, allTurnosDisponibles, EmpleadoSeleccionado]);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setShowCalendar(false);
-    console.log(selectedDate);
   };
 
   const toggleCalendar = () => {

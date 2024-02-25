@@ -7,10 +7,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import {getEmpleados} from '../../Axios/axiosEmpleados'
 import { useNavigate } from 'react-router-dom'
 import { setEmpElegido } from '../../Redux/Slices/EmpleadoElegidoSlice'
+import { getTurnosAsync } from '../../Redux/Slices/TurnosSlices'
 const ElegirEmpleado = () => {
   const {empleados, error} = useSelector(state => state.listaEmpleados);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(getTurnosAsync());
+  }, [dispatch]);
   useEffect(() => {
     if(!empleados){
       getEmpleados(dispatch)
