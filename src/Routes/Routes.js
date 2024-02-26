@@ -18,6 +18,7 @@ import '../transition.css';
 import Login from '../Pages/Login/Login';
 import VerificarEmail from '../Pages/VerificarEmail/VerificarEmail';
 import ElegirEmpleado from '../Pages/ElegirEmpleado/ElegirEmpleado';
+import Servicios from '../Pages/Servicios/Servicios';
 
 
 const Routes = () => {
@@ -141,6 +142,20 @@ const Routes = () => {
                 unmountOnExit
               >
                 <ElegirEmpleado />
+              </CSSTransition>
+            }
+          />
+           <Route
+            path="/Servicios"
+            element={
+              <CSSTransition
+                classNames="fade"
+                timeout={300}
+                appear
+                in={true}
+                unmountOnExit
+              >
+                <Servicios />
               </CSSTransition>
             }
           />

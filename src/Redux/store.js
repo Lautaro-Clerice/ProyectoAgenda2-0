@@ -7,6 +7,7 @@ import turnoConfirmadoReducer from './Slices/TurnoConfirmado'
 import turnoClienteReducer from './Slices/ObtenerTurnos'
 import empleadosReducer from './Slices/EmpleadosSlice'
 import seleccionadoReducer from './Slices/EmpleadoElegidoSlice'
+import serviciosReducer from './Slices/ServiciosSlice'
 const reducers = combineReducers({
     turnos: turnosReducer,
     user: userReducer,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
     turnoCliente: turnoClienteReducer,
     listaEmpleados: empleadosReducer,
     empleadoSeleccionado: seleccionadoReducer,
+    servicios: serviciosReducer,
 });
 
 const persistConfig = {

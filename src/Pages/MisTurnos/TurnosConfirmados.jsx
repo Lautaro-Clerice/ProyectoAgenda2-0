@@ -1,7 +1,6 @@
 import React from "react";
 import { AgendasContainerTurnos, ContainerBotones, EliminarTurno, ObservacionesContainer, TurnoFechaContainer } from "./MisTurnosStyles";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
+
 import { useDispatch, useSelector } from "react-redux";
 import deleteTurnos, { liberarTurno } from "../../Axios/AxiosTurnos";
 import { toast } from "react-toastify";
