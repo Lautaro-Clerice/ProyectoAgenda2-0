@@ -12,19 +12,27 @@ const ElegirEmpleado = () => {
   const {empleados, error} = useSelector(state => state.listaEmpleados);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const servicioElegido = useSelector((state) => state.servicioSeleccionado.ServicioSeleccionado)
+
   useEffect(() => {
     dispatch(getTurnosAsync());
   }, [dispatch]);
+
+
   useEffect(() => {
     if(!empleados){
       getEmpleados(dispatch)
     }
   }, [empleados, error, dispatch])
 
+
+
   const handleSelectEmp = (nombre) => {
     dispatch(setEmpElegido(nombre));
     navigate('/elegirturno')
   }
+  const empleadosFiltro = empleados ? empleados.filter(emp => emp.nombre === servicioElegido.profesional) : [];
+
 
   return (
     <>
@@ -40,8 +48,8 @@ const ElegirEmpleado = () => {
                   <p>Primero disponible</p>
               </NombreEmpleado>
           </EmpleadoOption>
-            { empleados !== null ? (
-              empleados.map(emp => (
+            { empleadosFiltro.length > 0 ? (
+              empleadosFiltro.map(emp => (
                 <EmpleadoOption onClick={() => handleSelectEmp(emp.nombre) }>
                   <NombreEmpleado>
                     <img src={empleado} alt="empleado" />

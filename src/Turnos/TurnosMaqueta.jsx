@@ -9,6 +9,8 @@ import { ocuparTurnoLibre } from '../Axios/AxiosTurnos';
 
 const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
   const usuario = useSelector((state) => state.user.currentUser);
+  const servicioElegido = useSelector((state) => state.servicioSeleccionado.ServicioSeleccionado)
+
   const [isRemoving, setIsRemoving] = useState(false);
   const navigate = useNavigate();
   
@@ -20,6 +22,8 @@ const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
       name: usuario.nombre,
       email: usuario.email,
       telefono: usuario.telefono,
+      servicio: servicioElegido.servicio,
+      precio: servicioElegido.precio,
     };
     
     try {

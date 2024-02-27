@@ -24,7 +24,7 @@ import Servicios from '../Pages/Servicios/Servicios';
 const Routes = () => {
 
   const user = useSelector((state) => state.user.currentUser);
-
+  const servicioElegido = useSelector((state) => state.servicioSeleccionado.ServicioSeleccionado)
   return (
     <BrowserRouter>
       <Layout>
@@ -134,6 +134,9 @@ const Routes = () => {
           <Route
             path="/Elegir"
             element={
+              servicioElegido == null ? (
+                <Navigate to='/servicios'/>
+              ) : (
               <CSSTransition
                 classNames="fade"
                 timeout={300}
@@ -143,6 +146,7 @@ const Routes = () => {
               >
                 <ElegirEmpleado />
               </CSSTransition>
+              )
             }
           />
            <Route
