@@ -28,9 +28,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleForLogin = async () => {
-    setLoading(true);
     toast.success(`Bienvenido a ${nombreCliente}`);
-    setLoading(false);
     navigate('/home');
   }
   return (
@@ -45,6 +43,7 @@ const Login = () => {
         initialValues={LoginInitialValues}
         validationSchema={loginValidationSchema}
         onSubmit={async values => {
+          setLoading(true);
           const user = await loginUser(values.email, values.password);
           if(user) {
             dispatch(setUser({
@@ -54,6 +53,7 @@ const Login = () => {
             handleForLogin();
             
           }
+          setLoading(false);
         }}
       >
         <Form>

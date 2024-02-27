@@ -7,10 +7,12 @@ import { getServicios } from '../../Axios/axiosServicios'
 import icon from '../../Imagenes/service.svg'
 import { useNavigate } from 'react-router-dom'
 import { setServElegido } from '../../Redux/Slices/ServicioElegido'
+import Loader from '../../UX/Loader/Loader'
 const Servicios = () => {
   const navigate = useNavigate()
     const dispatch = useDispatch();
     const service = useSelector((state) => state.servicios.servicios)
+    const { servicios, loading } = useSelector(state => state.servicios);
     useEffect(() => {
         if(!service){
             getServicios(dispatch)
@@ -24,28 +26,30 @@ const Servicios = () => {
     }
   return (
     <>
-        <ContainerPadre style={{flexDirection:'column'}}>
+        <ContainerPadre>
             <ContainerAll>
                 <TitleTurnos>Nuestros servicios</TitleTurnos>
-            </ContainerAll>
-            <EmpleadosContainer >
-            { service !== null ? (
-              service.map(serv => (
-                <EmpleadoOption onClick={() => handleAddServices(serv)}>
+            
+            <EmpleadosContainer style={{justifyContent:'start'}} >
+            {loading ? (
+            <Loader style={{color:'black'}}/>
+          ) : (
+            servicios !== null ? (
+              servicios.map(serv => (
+                <EmpleadoOption onClick={() => handleAddServices(serv)} key={serv.id}>
                   <NombreEmpleado>
-                    <img src={icon} alt="service"/>
+                    <img src={icon} alt="service" />
                     <p>{serv.servicio}</p>
                   </NombreEmpleado>
-                  
                   <p className='rol'>{serv.precio}</p>
                 </EmpleadoOption>
               ))
-
-              ) : (
-                'No hay empleados disponibles'
-              )
-            }
+            ) : (
+              'No hay servicios disponibles'
+            )
+          )}
           </EmpleadosContainer>
+          </ContainerAll>
         </ContainerPadre>
     </>
   )
