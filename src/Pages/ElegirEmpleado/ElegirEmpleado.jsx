@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { EmpleadoOption, EmpleadosContainer, NombreEmpleado } from './ElegirEmpleadoStyles'
+import { EmpleadoOption, EmpleadosContainer, ItemSeleccionado, ItemsContainer, NombreEmpleado } from './ElegirEmpleadoStyles'
 import { ContainerAll, ContainerPadre } from '../../Componentes/Contenedor/ContainerStyles'
 import { TitleTurnos } from '../MisTurnos/MisTurnosStyles'
 import empleado from '../../Imagenes/user.svg'
@@ -8,7 +8,11 @@ import {getEmpleados} from '../../Axios/axiosEmpleados'
 import { useNavigate } from 'react-router-dom'
 import { setEmpElegido } from '../../Redux/Slices/EmpleadoElegidoSlice'
 import { getTurnosAsync } from '../../Redux/Slices/TurnosSlices'
+import star from '../../Imagenes/service.svg'
+
+
 const ElegirEmpleado = () => {
+  const servSelect = useSelector((state) => state.servicioSeleccionado.ServicioSeleccionado)
   const {empleados, error} = useSelector(state => state.listaEmpleados);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,6 +45,19 @@ const ElegirEmpleado = () => {
           <TitleTurnos>
             Elegi el profesional
           </TitleTurnos>
+          <ItemsContainer>
+            {
+            servSelect ? (
+              <ItemSeleccionado onClick={() => navigate('/servicios')}>
+                <img src={star} alt="service"  />
+                <h2>{servSelect.servicio}</h2>
+              </ItemSeleccionado>
+            ) : (
+              null
+            )
+          }
+          </ItemsContainer>
+          
           <EmpleadosContainer >
           <EmpleadoOption style={{justifyContent:'start'}}  onClick={() => navigate('/elegirturno')}>
             <NombreEmpleado>

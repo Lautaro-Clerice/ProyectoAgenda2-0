@@ -6,15 +6,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom/dist';
 import { AgendarTurno } from '../Axios/axiosUser';
 import { ocuparTurnoLibre } from '../Axios/AxiosTurnos';
-
+import Loader from '../UX/Loader/Loader'
+import { colorTemplado } from '../UX/Colors';
 const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
   const usuario = useSelector((state) => state.user.currentUser);
   const servicioElegido = useSelector((state) => state.servicioSeleccionado.ServicioSeleccionado)
 
   const [isRemoving, setIsRemoving] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const navigate = useNavigate();
   
   const AgendarTurnosBD = async () => {
+    if (isButtonDisabled) return; 
+    
     const turnoData = {
       horario: horario,
       fecha: fecha,
@@ -27,9 +31,10 @@ const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
     };
     
     try {
+      setIsButtonDisabled(true); 
+
       await Promise.all([
         AgendarTurno(usuario, turnoData),
-        
         ocuparTurnoLibre(id),
       ]);
       setTimeout(() => {
@@ -38,6 +43,7 @@ const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
       }, 1000);
     } catch (error) {
       alert('Error al crear la orden');
+      setIsButtonDisabled(false); 
     }
   };
 
@@ -53,10 +59,13 @@ const TurnosMaqueta = ({ fecha, horario, id , empleado}) => {
         >
           <TurnosPadre>
             <TurnosContainer>
-              <OpcionesContainer onClick={() => {
-                AgendarTurnosBD();
-              }}>
-                <h2 className='horario'>{horario}</h2>
+              <OpcionesContainer onClick={AgendarTurnosBD} disabled={isButtonDisabled}>
+                {isButtonDisabled ? (
+                  <Loader styles={{borderColor:colorTemplado}} />
+                ) : (
+                  <h2  className='horario'>{horario}</h2>
+                )
+                }
               </OpcionesContainer>
             </TurnosContainer>
           </TurnosPadre>

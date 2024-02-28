@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colorTemplado } from "../../UX/Colors";
 
 
 export const EmpleadosContainer =  styled.div`
@@ -38,4 +39,28 @@ export const EmpleadoOption = styled.div`
 export const NombreEmpleado = styled.div`
     display: flex;
     gap: 20px;
+`
+
+export const ItemSeleccionado = styled.div`
+    margin-left: 30px;
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid ${colorTemplado};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    h2{
+        color: ${colorTemplado};
+        font-size: 14px;
+    }
+`
+
+export const ItemsContainer = styled.div`
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
 `
