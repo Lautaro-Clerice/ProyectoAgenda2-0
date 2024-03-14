@@ -35,7 +35,15 @@ const ElegirEmpleado = () => {
     dispatch(setEmpElegido(nombre));
     navigate('/elegirturno')
   }
-  const empleadosFiltro = empleados ? empleados.filter(emp => emp.nombre === servicioElegido.profesional) : [];
+  const empleadosFiltro = empleados
+  ? empleados.filter(emp => {
+    if (Array.isArray(servicioElegido.profesional)) {
+      return servicioElegido.profesional.includes(emp.nombre);
+    } else {
+      return emp.nombre === servicioElegido.profesional;
+    }
+  })
+  : [];
 
 
   return (
